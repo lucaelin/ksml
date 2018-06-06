@@ -40,6 +40,7 @@ Adding the generated code into your project is easy:
   Call the file from your code and pass it a GUI to render to:
     local g is GUI(400).
     run "myinterface.ks"(g).
+    g:SHOW().
 
 
 Using ID:
@@ -50,6 +51,7 @@ Using ID:
     local g is GUI(400).
     local ids is LEX().
     run "myinterface.ks"(g, ids).
+    g:SHOW().
     set ids["mylabel"]:TEXT to "My fancy text.".
         </pre>
     </body>
