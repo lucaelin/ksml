@@ -1,0 +1,18 @@
+{
+  "name": "ksml",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "xmldom": "^0.1.27"
+  },
+  "devDependencies": {
+    "browserify": "^16.2.2"
+  },
+  "scripts": {
+    "build": "./node_modules/browserify/bin/cmd.js ./main.js > browserify.js",
+    "start": "node main.js"
+  },
+  "author": "",
+  "license": "MIT"
+}

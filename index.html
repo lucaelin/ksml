@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ksml - XML to KerboScript converter</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css"></link>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js"></script>
+        <script defer="defer" type="text/javascript" src="browserify.js" ></script>
+    </head>
+    <body>
+        <div id="editor">&lt;vbox&gt;
+  &lt;label style:font='&quot;Roboto Monospace&quot;' style:fontsize='20'&gt;value&lt;/label&gt;
+  &lt;hbox&gt;
+    &lt;label id='myelement' style:font='&quot;Roboto Monospace&quot;' style:fontsize='20'&gt;
+      &amp;lt;b&amp;gt;value2&amp;lt;/b&amp;gt;
+    &lt;/label&gt;
+    &lt;button onclick='{ print &quot;button pressed&quot;. }'&gt;&lt;/button&gt;
+  &lt;/hbox&gt;
+&lt;/vbox&gt;</div>
+        <div id="wrapper">
+            <button>convert</button>
+        </div>
+        <pre>
+This tool creates Kerboscript from XML files, crafted to represent GUI-Layouts.
+
+
+If you want to set a labels font, you say:
+  &lt;label style:font='"Roboto Monospace"'&gt;&lt;/label&gt;
+Note that both single and doublequotes are used to represent a string value!
+
+This way it is possible to add inline anonymous functions as well:
+  &lt;button onclick='{ print "button pressed". }'&gt;&lt;/button&gt;
+
+If you want to use Rich Text, you need to HTML-Encode the text:
+  &amp;lt;b&amp;gt;value2&amp;lt;/b&amp;gt;
+
+
+Adding the generated code into your project is easy:
+  Save the generated code to a ".ks"-file, lets call it "myinterface.ks".
+  Call the file from your code and pass it a GUI to render to:
+    local g is GUI(400).
+    run "myinterface.ks"(g).
+
+
+Using ID:
+  IDs can be use to dynamically pick certain elements from your interface.
+  First add an ID-Attribute to the element you want to use inside your own code:
+    &lt;label id='mylabel'&gt;&lt;/label&gt;
+  Now you can pass a second argument when running the interfaces script:
+    local g is GUI(400).
+    local ids is LEX().
+    run "myinterface.ks"(g, ids).
+    set ids["mylabel"]:TEXT to "My pretty text.".
+        </pre>
+    </body>
+</html>
