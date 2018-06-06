@@ -9,12 +9,12 @@
     </head>
     <body>
         <div id="editor">&lt;vbox&gt;
-  &lt;label style:font='&quot;Roboto Monospace&quot;' style:fontsize='20'&gt;value&lt;/label&gt;
+  &lt;label param:text='"mylabel"' style:font='&quot;Roboto Monospace&quot;' style:fontsize='20'&gt;&lt;/label&gt;
   &lt;hbox&gt;
-    &lt;label id='myelement' style:font='&quot;Roboto Monospace&quot;' style:fontsize='20'&gt;
-      &amp;lt;b&amp;gt;value2&amp;lt;/b&amp;gt;
+    &lt;label id='myelement' param:text='"mylabel2"' style:font='&quot;Roboto Monospace&quot;' style:fontsize='20'&gt;
+      &amp;lt;b&amp;gt;mylabel2 rich text&amp;lt;/b&amp;gt;
     &lt;/label&gt;
-    &lt;button onclick='{ print &quot;button pressed&quot;. }'&gt;&lt;/button&gt;
+    &lt;button param:text='"mybutton"' param:on='true' onclick='{ print &quot;button pressed&quot;. }'&gt;&lt;/button&gt;
   &lt;/hbox&gt;
 &lt;/vbox&gt;</div>
         <div id="wrapper">
@@ -25,11 +25,11 @@ This tool creates Kerboscript from XML files, crafted to represent GUI-Layouts.
 
 
 If you want to set a labels font, you say:
-  &lt;label style:font='"Roboto Monospace"'&gt;&lt;/label&gt;
+  &lt;label param:text='"mytext"' style:font='"Roboto Monospace"'&gt;&lt;/label&gt;
 Note that both single and doublequotes are used to represent a string value!
 
 This way it is possible to add inline anonymous functions as well:
-  &lt;button onclick='{ print "button pressed". }'&gt;&lt;/button&gt;
+  &lt;button param:text='"mybutton"' param:on='true' onclick='{ print "button pressed". }'&gt;&lt;/button&gt;
 
 If you want to use Rich Text, you need to HTML-Encode the text:
   &amp;lt;b&amp;gt;value2&amp;lt;/b&amp;gt;
