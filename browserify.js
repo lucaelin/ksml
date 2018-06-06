@@ -12,7 +12,6 @@ function parseAttribute(attribute) {
 
 function parseParameter(attribute) {
   if(attribute.prefix!=='param') return;
-  console.log(attribute.value);
   return attribute.value;
 }
 
