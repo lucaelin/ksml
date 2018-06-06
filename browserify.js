@@ -52,7 +52,7 @@ function parseElementNode(node) {
 
   return `{
 local parent is node.
-local node is parent:add${node.tagName}.
+local node is parent:add${node.tagName}().
 ${attrcode.join('\n')}
 ${childcode.join('\n')}
 }`.split('\n').map(
