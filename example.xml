@@ -1,4 +1,0 @@
-<vbox>
-  <label  param:text='""' style:font='"Roboto Monospace"' style:fontsize='20'>value</label>
-  <hbox><label id='myelement' param:text='""' style:font='"Roboto Monospace"' style:fontsize='20'>&lt;b&gt;value2&lt;\b&gt;</label></hbox>
-</vbox>

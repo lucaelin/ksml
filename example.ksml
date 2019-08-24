@@ -1,0 +1,9 @@
+<vbox>
+  <label style:font='"Roboto Monospace"' style:fontsize='20'>mylabel</label>
+  <hbox>
+    <label id='myelement' style:font='"Roboto Monospace"' style:fontsize='20'>
+      &lt;b&gt;mylabel2 rich text&lt;/b&gt;
+    </label>
+    <button onclick='{ print "button pressed". }'>mybutton</button>
+  </hbox>
+</vbox>

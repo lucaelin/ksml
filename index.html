@@ -9,12 +9,12 @@
     </head>
     <body>
         <div id="editor">&lt;vbox&gt;
-  &lt;label param:text='"mylabel"' style:font='&quot;Roboto Monospace&quot;' style:fontsize='20'&gt;&lt;/label&gt;
+  &lt;label style:font='&quot;Roboto Monospace&quot;' style:fontsize='20'&gt;mylabel&lt;/label&gt;
   &lt;hbox&gt;
-    &lt;label id='myelement' param:text='"mylabel2"' style:font='&quot;Roboto Monospace&quot;' style:fontsize='20'&gt;
+    &lt;label id='myelement' style:font='&quot;Roboto Monospace&quot;' style:fontsize='20'&gt;
       &amp;lt;b&amp;gt;mylabel2 rich text&amp;lt;/b&amp;gt;
     &lt;/label&gt;
-    &lt;button param:text='"mybutton"' onclick='{ print &quot;button pressed&quot;. }'&gt;&lt;/button&gt;
+    &lt;button onclick='{ print &quot;button pressed&quot;. }'&gt;mybutton&lt;/button&gt;
   &lt;/hbox&gt;
 &lt;/vbox&gt;</div>
         <div id="wrapper">
@@ -27,11 +27,11 @@ This tool creates Kerboscript from XML files, crafted to represent GUI-Layouts.
 
 
 If you want to set a labels font, you say:
-  &lt;label param:text='"mytext"' style:font='"Roboto Monospace"'&gt;&lt;/label&gt;
-Note that both single and doublequotes are used to represent a string value!
+  &lt;label style:font='"Roboto Monospace"'&gt;mytext&lt;/label&gt;
+Note that both single and doublequotes are used to represent a string value as attribute!
 
 This way it is possible to add inline anonymous functions as well:
-  &lt;button param:text='"mybutton"' onclick='{ print "button pressed". }'&gt;&lt;/button&gt;
+  &lt;button onclick='{ print "button pressed". }'&gt;mybutton&lt;/button&gt;
 
 If you want to use Rich Text, you need to HTML-Encode the text:
   &amp;lt;b&amp;gt;value2&amp;lt;/b&amp;gt;
@@ -48,11 +48,11 @@ Adding the generated code into your project is easy:
 Using ID:
   IDs can be use to dynamically pick certain elements from your interface.
   First add an ID-Attribute to the element you want to use inside your own code:
-    &lt;label id='mylabel' param:text='"mylabel"'&gt;&lt;/label&gt;
+    &lt;label id='mylabel' &gt;mylabel&lt;/label&gt;
   Now you can pass a second argument when running the interfaces script:
     local g is GUI(400).
     local ids is LEX().
-    run "myinterface.ks"(g, ids).
+    run "interface.ksml.ks"(g, ids).
     g:SHOW().
     set ids["mylabel"]:TEXT to "My fancy text.".
 
