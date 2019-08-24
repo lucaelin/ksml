@@ -10,3 +10,6 @@ button {
   display: inline-block;
   width: 30%;
 }
+pre {
+  overflow-x: scroll;
+}

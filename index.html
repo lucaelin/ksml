@@ -18,7 +18,9 @@
   &lt;/hbox&gt;
 &lt;/vbox&gt;</div>
         <div id="wrapper">
-            <button>convert</button>
+            <button id="upload">upload</button>
+            <button id="convert">convert</button>
+            <button id="download">download</button>
         </div>
         <pre>
 This tool creates Kerboscript from XML files, crafted to represent GUI-Layouts.
@@ -53,6 +55,10 @@ Using ID:
     run "myinterface.ks"(g, ids).
     g:SHOW().
     set ids["mylabel"]:TEXT to "My fancy text.".
+
+Uploading and Downloading ksml files:
+  You can upload your local xml files into the editor.
+  Uploading a local .ksml.ks file, previously downloaded using this tool, will restore the XML it originated from.
         </pre>
     </body>
 </html>
