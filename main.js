@@ -91,7 +91,15 @@ if(typeof window !== 'undefined' && typeof document !== 'undefined') {
   editor = ace.edit(document.querySelector('#editor'));
   editor.session.setMode("ace/mode/xml");
   document.querySelector('button').addEventListener('click', function(){
-    document.querySelector('pre').innerText = convert(editor.getValue());
+    const input = editor.getValue();
+    const code = convert(input);
+    const output = code 
+      + '\n// Previous code generated from:\n' 
+      + input
+        .split('\n')
+        .map(s => '//'+s)
+        .join('\n'); 
+    document.querySelector('pre').innerText = output;
   });
 } else if(typeof global !== 'undefined') {
   const fs = require('fs');
