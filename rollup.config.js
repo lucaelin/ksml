@@ -6,7 +6,6 @@ import { terser } from 'rollup-plugin-terser';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 
 const resources = [
-  { src: 'src/style.css', dest: 'dist' },
   { src: 'src/res', dest: 'dist' }
 ];
 

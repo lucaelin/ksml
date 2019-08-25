@@ -6,4 +6,6 @@
     </label>
     <button onclick='{ print "button pressed". }'>mybutton</button>
   </hbox>
+  <button id='mysecondbutton'>mysecondbutton</button>
+  <hbox id='recursion'></hbox>
 </vbox>

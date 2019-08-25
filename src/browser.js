@@ -1,16 +1,41 @@
-import { convert, onlineConvert } from './ksml.js';
+import * as ksml from './ksml.js';
 
 const editor = ace.edit(document.querySelector('#editor'));
+if(window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  editor.setTheme("ace/theme/twilight");
+}
 editor.session.setMode("ace/mode/xml");
-document.querySelector('#convert').addEventListener('click', function(){
+const dom = {
+  error: document.querySelector('#error'),
+  output: document.querySelector('#output'),
+};
+
+function prefixedConvert(input, onerror) {
+  const code = ksml.convert(input, onerror);
+  const output = '// This code is generated using KSML (lucaelin.github.io/ksml)\n'
+    + '// KSML-Source: ~'
+    + btoa(unescape(encodeURIComponent(input)))
+    + '~\n'
+    + code;
+  return output;
+}
+
+function update() {
   const input = editor.getValue();
-  const output = onlineConvert(input);
-  document.querySelector('pre').innerText = output;
-});
+  dom.error.innerText = '';
+  dom.error.style.display = 'none';
+  const output = prefixedConvert(input, (e)=>{
+    dom.error.innerText = e;
+    dom.error.style.display = 'block';
+  })
+  dom.output.innerText = output;
+  return output;
+}
+
+document.querySelector('#convert').addEventListener('click', update);
+
 document.querySelector('#download').addEventListener('click', function(){
-  const input = editor.getValue();
-  const output = onlineConvert(input);
-  document.querySelector('pre').innerText = output;
+  const output = update();
 
   const element = document.createElement('a');
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(output));
@@ -23,6 +48,7 @@ document.querySelector('#download').addEventListener('click', function(){
 
   document.body.removeChild(element);
 });
+
 document.querySelector('#upload').addEventListener('click', function(){
   const element = document.createElement('input');
   element.setAttribute('type', 'file');
@@ -31,16 +57,15 @@ document.querySelector('#upload').addEventListener('click', function(){
 
   element.addEventListener('change', function(e) {
     new Response(element.files[0]).text().then(function(text) {
-      const input = text.split('\n');
-      if(input[1] && input[1].startsWith('// KSML-Source: ~')) {
-        const [_, enc] = input[1].split('~');
+      const input = text.split('\n').filter(l => l.startsWith('// KSML-Source: ~'));
+      if(input.length) {
+        const [_, enc] = input[0].split('~');
         editor.setValue(atob(enc));
       } else {
         editor.setValue(text);
       }
 
-      const output = onlineConvert(editor.getValue());
-      document.querySelector('pre').innerText = output;
+      update();
     });
   })
   element.click();

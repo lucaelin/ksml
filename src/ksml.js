@@ -1,5 +1,4 @@
 import xmldom from 'xmldom';
-const parser = new xmldom.DOMParser();
 
 function parseAttribute(attribute) {
   if(attribute.prefix==='param') return;
@@ -83,17 +82,8 @@ function parseNode(node) {
   }
 }
 
-export function convert(xml) {
+export function convert(xml, errorHandler) {
+  const parser = new xmldom.DOMParser({errorHandler});
   const dom = parser.parseFromString(xml, "text/html");
   return parseNode(dom);
-}
-
-export function onlineConvert(input) {
-  const code = convert(input);
-  const output = '// This code is generated using KSML (lucaelin.github.io/ksml)\n'
-    + '// KSML-Source: ~'
-    + btoa(unescape(encodeURIComponent(input)))
-    + '~\n'
-    + code;
-  return output;
 }
