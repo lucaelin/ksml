@@ -1,6 +1,8 @@
 # ksml - Kerboscript GUI-code generator
 This tool creates Kerboscript from XML files, crafted to represent GUI-Layouts.
 
+An online version of this tool as available at [github.io](https://lucaelin.github.io/ksml)
+
 ## Example XML
   `myinterface.ksml`
   ```xml
