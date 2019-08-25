@@ -75,6 +75,7 @@ pre {
   body {
     background-color: #222;
     color: white;
+    max-height: 100vh;
   }
   button {
     border: 1px solid #777;
