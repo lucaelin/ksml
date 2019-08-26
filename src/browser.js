@@ -29,6 +29,7 @@ function update() {
     dom.error.style.display = 'block';
   })
   dom.output.innerText = output;
+  dom.output.classList.add('autoselect');
   return output;
 }
 
